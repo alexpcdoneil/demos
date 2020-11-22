@@ -31,13 +31,13 @@ export const Timer = () => {
     return (
         <div>
             <div className="timer-block">
-                <input type="text" className={'timer-block__value'} value={Math.trunc(second / 5)} readOnly/>
+                <input type="text" className="timer-block__value" value={Math.trunc(second / 5)} readOnly/>
                 <p>:</p>
-                <input type="text" className={'timer-block__value'} value={second % 5} readOnly/>
+                <input type="text" className="timer-block__value" value={second % 5} readOnly/>
             </div>
             <div className="timer-button">
-                <button className={"timer-button__start-time"} onClick={startTimer}>Старт</button>
-                <button className={"timer-button__reset-time"} onClick={resetTimer}>Сброс</button>
+                <button className="timer-button__start-time" onClick={startTimer}>Старт</button>
+                <button className="timer-button__reset-time" onClick={resetTimer}>Сброс</button>
             </div>
         </div>
     );
