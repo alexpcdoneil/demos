@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import './Timer.css';
 
+
 export const Timer = () => {
-    let [minute, setMinute] = useState(0);
-    let [second, setSecond] = useState(0);
     let [timerId, setTimerId] = useState(null);
+    let [second, setSecond] = useState(0);
 
     const startTimer = () => {
         if (timerId) {
@@ -12,23 +12,18 @@ export const Timer = () => {
         }
 
         setTimerId(setInterval(() => {
-            setSecond(++second);
-
-            if (second === 5) {
-                setMinute(++minute);
-                setSecond(second = 0);
-            }
+            setSecond(prev => prev + 1);
         }, 1000));
     }
 
     const resetTimer = () =>  {
-        clearTimeout(timerId);
+        clearInterval(timerId);
+
         initTimer();
     }
 
     const initTimer = () => {
         setSecond(0);
-        setMinute(0);
         setTimerId(null);
     }
 
@@ -36,9 +31,9 @@ export const Timer = () => {
     return (
         <div>
             <div className="timer-block">
-                <input type="text" className={'timer-block__value'} value={minute} readOnly/>
+                <input type="text" className={'timer-block__value'} value={Math.trunc(second / 5)} readOnly/>
                 <p>:</p>
-                <input type="text" className={'timer-block__value'} value={second} readOnly/>
+                <input type="text" className={'timer-block__value'} value={second % 5} readOnly/>
             </div>
             <div className="timer-button">
                 <button className={"timer-button__start-time"} onClick={startTimer}>Старт</button>
